@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Item List</h1>
+        
+        <!-- Add New Item Button -->
+        <a href="{% url 'create_item' %}" class="btn btn-primary mb-3">Add New Item</a>
+
+        <div class="row row-cols-1 row-cols-md-3 mb-3">
+            {% for item in items %}
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm">
+                    <div class="card-body text-center">
+                        <!-- Display the image for each item -->
+                        <div>
+                            {% if item.image %}
+                                 <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid">
+                            {% else %}
+                                <img src="{% static 'img/default_image.png' %}" alt="Default Image" class="img-fluid">
+                            {% endif %}
+                        </div>
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">{{ item.description }}</p>
+                        <p class="card-text"><strong>Price:</strong>₱{{ item.price }}</p>
+                        <a href="{% url 'update_item' item.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'delete_item' item.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+
+        <!-- Table for Item List (Fallback view) -->
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col" class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>${{ item.price }}</td>
+                    <td class="text-center">
+                        <a href="{% url 'update_item' item.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'delete_item' item.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Item List</h1>
+        <a href="{% url 'create_item' %}" class="btn btn-primary mb-3">Add New Item</a>
+        <ul class="list-group">
+            {% for item in items %}
+                <li class="list-group-item">
+                    {{ item.name }} - {{ item.price }} -
+                    <a href="{% url 'update_item' item.pk %}" class="btn btn-warning btn-sm">Edit</a> -
+                    <a href="{% url 'delete_item' item.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html> -->
+
+
+
+
+<!-- <h1>Item List</h1>
+<a href="{% url 'create_item' %}">Add New Item</a>
+<ul>
+    {% for item in items %}
+        <li>{{ item.name }} - {{ item.price }} -
+            <a href="{% url 'update_item' item.pk %}">Edit</a> -
+            <a href="{% url 'delete_item' item.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul> -->

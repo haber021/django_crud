@@ -1,0 +1,28 @@
+body {
+    background-color: #f7f9fc;
+}
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.form-label {
+    font-weight: bold;
+}
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #218838;
+}
+.btn {
+    font-size: 16px;
+}
+.form-control {
+    height: 40px;
+    font-size: 16px;
+}
